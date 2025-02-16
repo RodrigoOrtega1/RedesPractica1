@@ -2,6 +2,8 @@ import requests
 from getmac import get_mac_address
 import sys
 
+global_url = "http://localhost:5000"
+
 def post(name:str):
     server_data = get()
     valor = 0
@@ -15,12 +17,12 @@ def post(name:str):
             "valor" : valor,
             "name" : name
         }
-    url = "http://localhost:5000/post"
+    url = global_url + "/post"
     response = requests.post(url, json=post_data)
     print ("Respuesta del servidor:", response.text)
 
 def get():
-    url = "http://localhost:5000/get"
+    url = global_url + "/get"
     response = requests.get(url)
     print("Respuesta del servidor:", response.text)
     return response.json()
