@@ -2,31 +2,39 @@ import requests
 from getmac import get_mac_address
 import sys
 
-valor = 0
-name = "Rodrigo"
-data = {
+def post(name:str):
+    server_data = get()
+    valor = 0
+    name = name
+    if len(server_data) == 0:
+        post_data = {
             "mac" : get_mac_address(),
             "valor" : valor,
             "name" : name
         }
-
-def post():
+    else:
+        post_data = {
+            "mac" : get_mac_address(),
+            "valor" : server_data.get("valor") + 1,
+            "name" : name
+        }
     url = "http://localhost:5000/post"
-    response = requests.post(url, json=data)
-    print ("Response from server:", response.text)
+    response = requests.post(url, json=post_data)
+    print ("Respuesta del servidor:", response.text)
 
 def get():
     url = "http://localhost:5000/get"
     response = requests.get(url)
-    print("Response from server:", response.text)
+    print("Respuesta del servidor:", response.text)
+    return response.json()
 
 if __name__ == "__main__":
     try:
         if sys.argv[1] == "post":
-            post()
+            post(sys.argv[2])
         elif sys.argv[1] == "get":
             get()
         else:
             sys.exit("Inserta un argumento valido: \"get\" o \"post\"")
     except IndexError:
-        sys.exit("Inserta un argumento valido: \"get()\" o \"post()\"")
+        sys.exit("Inserta un argumento valido: \"get\" o \"post\", para recordar como escribir un post request checa el README")
