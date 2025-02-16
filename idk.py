@@ -4,7 +4,9 @@
 # Debemos usar metodos tipo get y post
 # 1. Usar flask para inicializar un servidor <- aqui se escribe el codigo y se establecen las rutas
 # 2. Usar ngrok para exponer el puerto 5000 a otras computadoras.
-# ngrok http 5000 --url verbally-intent-boar.ngrok-free.app 
+# flask --app idk run -> corre la aplicacion
+# ngrok http http://localhost:5000
+# ngrok http 5000 --url verbally-intent-boar.ngrok-free.app -> en otra terminal una vez la aplicacion esta corriendo, cerrar esta terminal cierra ngrok
 from flask import Flask, request, jsonify
 
 stored_data = {}
