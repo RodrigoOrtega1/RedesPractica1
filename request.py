@@ -6,10 +6,10 @@ def post(name:str):
     server_data = get()
     valor = 0
     name = name
-    if len(server_data) != 0:
-        valor = server_data.get("valor") + 1
     if server_data.get("valor") == 50:
         print(server_data.get("name") + " hizo que el valor fuera de 50! Felicidades!")
+    if len(server_data) != 0:
+        valor = server_data.get("valor") + 1
     post_data = {
             "mac" : get_mac_address(),
             "valor" : valor,
